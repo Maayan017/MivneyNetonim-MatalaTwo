@@ -48,6 +48,7 @@ Node* BuildList()
 // ôåð÷öéä àéèéú - æîï øéöä O(n^2)
 int Circle_list_1(Node* p)
 {
+    if (!p) return 0;
     p->key = 1;
     int k = 0;
 
@@ -76,6 +77,8 @@ int Circle_list_1(Node* p)
 // ôåð÷öéä éòéìä - æîï øéöä O(n log n) 
 int Circle_list_2(Node* p)
 {
+    if (!p) return 0;
+
     p->key = 1;
     int k = 0;
 
