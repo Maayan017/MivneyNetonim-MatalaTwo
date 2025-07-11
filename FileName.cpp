@@ -19,7 +19,7 @@ Node* BuildList()
 
     while (true)
     {
-        if (rand() % 100 + 1 == 1) 
+        if (rand() % 100 + 1 == 1)
             break;
 
         Node* node = new Node;
@@ -38,53 +38,56 @@ Node* BuildList()
             head->prev = node;
             tail = node;
         }
-        
+
     }
 
-    
+
     return head;
 }
 
-// ôåð÷öéä àéèéú - æîï øéöä O(n^2)
-int Circle_list_1(Node* p)
-{
+int Circle_list_1(Node* p) {
     if (!p) return 0;
+
     p->key = 1;
     int k = 0;
 
     while (true) {
-        k = k + 1;
+        k++;
 
+        // התקדם k צעדים קדימה
         for (int i = 0; i < k; ++i) {
             p = p->next;
         }
 
+        // אפס את הצומת שהגעת אליו
         p->key = 0;
 
+        // חזור k צעדים אחורה
         for (int i = 0; i < k; ++i) {
             p = p->prev;
         }
 
-        if (p->key == 0)
+        // אם הצומת שסימנת קודם כבר אפס → סיימנו
+        if (p->key == 0) {
             break;
+        }
     }
 
     return k;
 }
 
+int Circle_list_2(Node* p) {
 
-
-// ôåð÷öéä éòéìä - æîï øéöä O(n log n) 
-int Circle_list_2(Node* p)
-{
     if (!p) return 0;
 
+    // סימון נקודת ההתחלה
     p->key = 1;
     int k = 0;
 
+    // חיפוש מעריכי: 1, 2, 4, 8, ...
     while (true) {
-        k = k + 1;
-        int steps = 1 << k;
+        int steps = 1 << k;  // 2^k
+        k++;
 
         for (int i = 0; i < steps; ++i) {
             p = p->next;
@@ -100,18 +103,18 @@ int Circle_list_2(Node* p)
             break;
     }
 
+    // חישוב אורך מדויק (מעבר אחד)
     p->key = 1;
     p = p->next;
-    int helper = 1;
+    int count = 1;
 
     while (p->key != 1) {
-        helper++;
+        count++;
         p = p->next;
     }
 
-    return helper;
+    return count;
 }
-
 
 void freeList(Node* head) {
     if (!head) return;
@@ -131,7 +134,7 @@ int main() {
 
 
     int len1 = Circle_list_1(list);
-    cout << "Length using Circle_list_1 (O(n^2)): " << len1 << endl;
+    cout << "Length using Circle_list_1 (Theta(n^2)): " << len1 << endl;
 
     int len2 = Circle_list_2(list);
     cout << "Length using Circle_list_2 (O(n log n)): " << len2 << endl;
