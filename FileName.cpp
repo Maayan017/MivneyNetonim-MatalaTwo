@@ -23,7 +23,7 @@ Node* BuildList()
             break;
 
         Node* node = new Node;
-        node->key = (rand() % 100 <= 50) ? 1 : 0;
+        node->key = (rand() % 2);
         node->next = node->prev = nullptr;
 
         if (!head) {
@@ -45,7 +45,7 @@ Node* BuildList()
     return head;
 }
 
-// ôåğ÷öéä àéèéú - æîï øéöä O(n^2)
+// Ã´Ã¥Ã°Ã·Ã¶Ã©Ã¤ Ã Ã©Ã¨Ã©Ãº - Ã¦Ã®Ã¯ Ã¸Ã©Ã¶Ã¤ O(n^2)
 int Circle_list_1(Node* p)
 {
     p->key = 1;
@@ -73,7 +73,7 @@ int Circle_list_1(Node* p)
 
 
 
-// ôåğ÷öéä éòéìä - æîï øéöä O(n log n) 
+// Ã´Ã¥Ã°Ã·Ã¶Ã©Ã¤ Ã©Ã²Ã©Ã¬Ã¤ - Ã¦Ã®Ã¯ Ã¸Ã©Ã¶Ã¤ O(n log n) 
 int Circle_list_2(Node* p)
 {
     p->key = 1;
