@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 
 using namespace std;
 
@@ -72,7 +73,7 @@ int Circle_list_1(Node* p)
 
 
 
-// פונקציה יעילה - זמן ריצה O(n log n) עקב מיון
+// פונקציה יעילה - זמן ריצה O(n log n) 
 int Circle_list_2(Node* p)
 {
     p->key = 1;
@@ -80,14 +81,15 @@ int Circle_list_2(Node* p)
 
     while (true) {
         k = k + 1;
+        int steps = 1 << k;
 
-        for (int i = 0; i < 2^k; ++i) {
+        for (int i = 0; i < steps; ++i) {
             p = p->next;
         }
 
         p->key = 0;
 
-        for (int i = 0; i < 2^k; ++i) {
+        for (int i = 0; i < steps; ++i) {
             p = p->prev;
         }
 
@@ -98,10 +100,8 @@ int Circle_list_2(Node* p)
     p->key = 1;
     p = p->next;
     int helper = 1;
-    while (true)
-    {
-        if (p->key == 1)
-            break;
+
+    while (p->key != 1) {
         helper++;
         p = p->next;
     }
